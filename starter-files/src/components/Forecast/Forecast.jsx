@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styles from './Forecast.module.css';
 import CurrentDay from '../CurrentDay/CurrentDay';
 import CurrentDayDescription from '../CurrentDayDescription/CurrentDayDescription';
-import UpcomingDaysForecast from '../../helpers/getUpcomingDaysForecast';
+import UpcomingDaysForecast from '../UpcomingDaysForecast/UpcomingDaysForecast';
 
 const Forecast = ({forecast}) => (
     <Container className={styles.box}>
@@ -18,7 +18,7 @@ const Forecast = ({forecast}) => (
             </Col>
             <Col xs={12} md={8} className="d-flex flex-column justify-content-between"> 
                  <CurrentDayDescription forecast={forecast.currentDayDetails}/>
-                 {/*<UpcomingDaysForecast days={forecast.upcomingDays}/>*/}
+                 <UpcomingDaysForecast days={forecast.upcomingDays}/>
             </Col>
         </Row>
     </Container>
