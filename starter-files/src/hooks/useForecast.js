@@ -6,7 +6,7 @@ import getUpcomingDaysForecast from '../helpers/getUpcomingDaysForecast';
 
 
 const base_url = 'https://www.metaweather.com/api/location'
-const cross_domain = 'https://the-ultimate-api-challange.herokuapp.com'
+//const cross_domain = 'https://the-ultimate-api-challange.herokuapp.com'   //to be used in case ofcross browser issues req_url to be changed to ${cross_domain}/${req_url}
 const req_url = `${base_url}`
 
 const useForecast = () => {
@@ -41,7 +41,7 @@ const useForecast = () => {
     }
   
     const gatherForecastData = (data) => {
-      const currentDay = getCurrentDayForecast(data.consolidated_weather[0], data.title);
+      const currentDay = getCurrentDayForecast(data.consolidated_weather[0], data.title, data.time);
       const currentDayDetails = getCurrentDayDetailedForecast(data.consolidated_weather[0]);
       const upcomingDays = getUpcomingDaysForecast(data.consolidated_weather);
 
@@ -59,7 +59,10 @@ const useForecast = () => {
     if(!data) return;
 
     gatherForecastData(data);
+
+    
   };
+
   return {
     isError,
     isLoading,

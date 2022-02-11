@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import propTypes from 'prop-types';
 import Header from '../Header';
 import styles from './Page.module.css'
@@ -13,6 +13,10 @@ const Page = () => {
 
     const onSubmit = (value) => {
         submitRequest(value);
+        const interval = setInterval(() => {
+            submitRequest(value);
+        }, 10000);
+        return () => clearInterval(interval);
     }
     return (
         <Fragment>

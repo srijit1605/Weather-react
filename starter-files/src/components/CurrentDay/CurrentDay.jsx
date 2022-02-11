@@ -4,7 +4,18 @@ import PropTypes from 'prop-types';
 import locationIcon from './assets/location-pin.png';
 import styles from './CurrentDay.module.css';
 
-const CurrentDay = ({ weekday, date, location, temperature, weatherIcon, weatherDescription}) => (
+
+
+const CurrentDay = ({ weekday, date, location, temperature, weatherIcon, weatherDescription,currentTime}) => {
+    var getTime = currentTime.split('T');
+    var nTime = getTime[1];
+    var newTime = nTime.split('.');
+    var time = newTime[0];
+    var wIcon = weatherIcon.split("'");
+    var icon = wIcon[1];
+
+    return (
+
     <div className="d-flex">
         <div className={styles.img}></div>
         <div className={styles.gradient}></div>
@@ -16,17 +27,19 @@ const CurrentDay = ({ weekday, date, location, temperature, weatherIcon, weather
                     <img width="10" height="15" src={locationIcon} className="mr-1" alt="location pin icon" />
                     <span>{location}</span>
                 </p>
-                 
+                <p>{time}</p>
+                
+                
             </div>
             <div>
-                <img width="45" src={weatherIcon} alt="" />
+                <img width="45" src={icon} alt="" />
                 <h2 className="font-weight-bold mb-1">
                     <span>{temperature}</span>°C
                 </h2>
                 <h5 className="font-weight-lighter">{weatherDescription}</h5></div>
         </div>
     </div>
-);
+)};
 
 CurrentDay.propTypes = {
     weekday: PropTypes.string.isRequired,

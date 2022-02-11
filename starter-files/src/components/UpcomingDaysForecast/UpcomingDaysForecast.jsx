@@ -10,6 +10,6 @@ const UpcomingDaysForecast = ({days}) => (<ul className={`${styles.weekList} d-f
 </ul>);
 UpcomingDaysForecast.propTypes = { 
     days: PropTypes.array.isRequired,
-};
+}; 
 
 export default UpcomingDaysForecast;
