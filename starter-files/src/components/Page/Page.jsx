@@ -1,5 +1,6 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment } from 'react';
 import propTypes from 'prop-types';
+
 import Header from '../Header';
 import styles from './Page.module.css'
 import Form from '../Form';
@@ -9,12 +10,13 @@ import Forecast from '../Forecast';
 import useForecast from '../../hooks/useForecast';
 
 const Page = () => {
-    const {isError, isLoading, forecast, submitRequest} = useForecast();
+    const { isError, isLoading, forecast, submitRequest } = useForecast();
 
     const onSubmit = (value) => {
         submitRequest(value);
         const interval = setInterval(() => {
             submitRequest(value);
+            console.log("soutik");
         }, 10000);
         return () => clearInterval(interval);
     }
@@ -31,6 +33,7 @@ const Page = () => {
                     {isLoading && <Loader />}
                 </div>
             )}
+
             {/* Forecast */}
             {forecast && <Forecast forecast={forecast} />}
         </Fragment>

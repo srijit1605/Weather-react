@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import axios from 'axios';
 import getCurrentDayForecast from '../helpers/getCurrentDayForecast';
 import getCurrentDayDetailedForecast from '../helpers/getCurrentDayDetailedForecast';
@@ -40,14 +40,14 @@ const useForecast = () => {
       return data;
     }
   
-    const gatherForecastData = (data) => {
+    const gatherForecastData = useCallback((data) => {
       const currentDay = getCurrentDayForecast(data.consolidated_weather[0], data.title, data.time);
       const currentDayDetails = getCurrentDayDetailedForecast(data.consolidated_weather[0]);
       const upcomingDays = getUpcomingDaysForecast(data.consolidated_weather);
 
       setforecast({currentDay, currentDayDetails, upcomingDays});
       setLoading(false);
-    };
+    },[]);
     //api call
     const submitRequest = async location =>{
     setLoading(true);
@@ -59,7 +59,6 @@ const useForecast = () => {
     if(!data) return;
 
     gatherForecastData(data);
-
     
   };
 
